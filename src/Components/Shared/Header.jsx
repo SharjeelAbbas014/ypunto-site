@@ -1,203 +1,235 @@
-import { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { createUseStyles } from "react-jss";
-import { Link } from "react-router-dom";
-//asset imports
-import logo from "../../Assets/Shared/nest-logofull.png";
-
+import { useMediaQuery } from "react-responsive";
+import { Link, useLocation } from "react-router-dom";
+import logo from "../../assets/images/shared/logo.png";
+import menuBtn from "../../assets/images/shared/menu.png";
 const useStyles = createUseStyles({
+  container: {
+    width: "100%",
+    backgroundColor: "#fff",
+  },
   wrapper: {
+    maxWidth: 1240,
+    height: 148,
+    margin: "0 auto",
+    paddingRight: 16,
+    paddingLeft: 16,
+    "@media(max-width:570px)": {
+      height: 124,
+    },
+    "@media(max-width:500px)": {
+      height: 96,
+    },
+  },
+  fsbc: {
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+    flexShrink: 0,
+  },
+  navItemsWrapper: {
+    // width: "100%",
     // backgroundColor: "green",
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "space-between",
-    padding: {
-      top: "25px",
-      bottom: "25px",
-      right: "105px",
-      left: "105px",
-    },
   },
-  navigation: {
-    width: "460px",
-    display: "flex",
-    justifyContent: "space-between",
-    listStyle: "none",
+  navItems: {
+    width: 423,
+    fontFamily: "Proxima400",
     "& li": {
-      color: "#000000",
-      padding: "10px",
-      fontFamily: "Neue400",
-      fontSize: "18px",
-      lineHeight: "27px",
-      "& a": {
-        color: "#000",
-        textDecoration: "none",
-        "&::active": {
-          color: "#4F6867",
-        },
-      },
+      listStyleType: "none",
     },
-  },
-  navActive: {},
-  burger: {
-    display: "none",
-  },
-  "@media (max-width: 768px)": {
-    navigation: {
+    "& a": {
+      textDecoration: "none",
+      fontSize: 18,
+      lineHeight: 22,
+      color: "black",
+    },
+    "@media(max-width:570px)": {
+      width: 353,
+    },
+    "@media(max-width:500px)": {
       display: "none",
     },
-    burger: {
-      "& div": {
-        width: "40px",
-        borderRadius: "200px",
-        height: "3px",
-        backgroundColor: "#000",
-        margin: "7px 0px",
-      },
-      display: "block",
-      cursor: "pointer",
-    },
   },
-  "@media (max-width: 500px)": {
-    wrapper: {
-      padding: {
-        top: "25px",
-        bottom: "25px",
-        right: "15px",
-        left: "15px",
-      },
-    },
-  },
-  close: {
-    "& div": {
-      width: "40px",
-      borderRadius: "200px",
-      height: "3px",
-      backgroundColor: "#fff",
-    },
-    display: "block",
-    cursor: "pointer",
-    position: "absolute",
-    top: "30px",
-    zIndex: "1000",
-    right: "50px",
-    height: "max-content",
-  },
-  pin1: {
-    transform: "rotate(45deg)",
-    top: "10px",
-    position: "absolute",
-    right: "-10px",
-    cursor: "pointer",
-  },
-  pin2: {
-    transform: "rotate(135deg)",
-    cursor: "pointer",
-    top: "10px",
-    right: "-10px",
-    position: "absolute",
-  },
-  navPopUp: {
-    width: "100vw",
-    height: "100vh",
-    backgroundColor: "#4F6867",
-    position: "fixed",
-    zIndex: "100",
-    top: "0",
-    left: "0",
-  },
-  mobileNavigation: {
-    height: "100%",
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "center",
-    alignItems: "center",
-    listStyle: "none",
+  navItemsMobile: {
+    backgroundColor: "black",
+    fontFamily: "Proxima400",
     "& li": {
-      color: "#fff",
-      padding: "10px",
-      fontFamily: "Neue400",
-      fontSize: "36px",
-      lineHeight: "50px",
-      "& a": {
-        color: "#fff",
-        textDecoration: "none",
-        "&::active": {
-          color: "#4F6867",
-        },
-      },
+      listStyleType: "none",
     },
+    "& a": {
+      textDecoration: "none",
+      fontSize: 18,
+      // lineHeight: 22,
+      color: "white",
+    },
+    position: "relative",
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+    width: 300,
+    margin: "8px auto",
+  },
+  logo: {
+    "@media(max-width:500px)": {
+      width: 70,
+    },
+  },
+  menuBtn: {
+    display: "none",
+    "@media(max-width:500px)": {
+      display: "block",
+    },
+  },
+  navItemsMobileWrapper: {
+    zIndex: 100,
+    visibility: "hidden",
+    position: "absolute",
+    backgroundColor: "black",
+    top: "0px",
+    opacity: 0,
+    width: "100%",
+    transition: "all 0.5s cubic-bezier(0, 0, 0, 0.99) ",
   },
 });
-
 const Header = () => {
+  const location = useLocation();
+  const [isActive, setIsActive] = useState(1);
+  const [showMenu, setShowMenu] = useState(false);
+  const is500 = useMediaQuery({ query: "(max-width: 500px)" });
+  const isActiveCheck = () => {
+    switch (location.pathname) {
+      case "/":
+        setIsActive(1);
+        break;
+      case "/about":
+        setIsActive(2);
+        break;
+      case "/impact":
+        setIsActive(3);
+        break;
+      case "/products":
+        setIsActive(4);
+        break;
+      case "/contact":
+        setIsActive(5);
+        break;
+      default:
+    }
+  };
+  useEffect(() => {
+    isActiveCheck();
+    setShowMenu(false);
+  }, [location.pathname]);
+  const toggleMenu = () => {
+    setShowMenu((prev) => !prev);
+  };
   const classes = useStyles();
-  const [nav, setNav] = useState(false);
   return (
-    <div className={classes.wrapper}>
-      <div className={classes.logoDiv}>
+    <div className={classes.container}>
+      <div className={`${classes.wrapper} ${classes.fsbc}`}>
         <Link to="/">
-          <img src={logo} alt="logo" />
+          <img className={classes.logo} src={logo} />
         </Link>
-      </div>
-      <div className={classes.navigation}>
-        <li>
-          <Link to="/solutions" activeClassName={classes.navActive}>
-            Solutions
-          </Link>
-        </li>
-        <li>
-          <Link to="about" activeClassName={classes.navActive}>
-            About Us
-          </Link>
-        </li>
-        <li>
-          <Link to="/contact" activeClassName={classes.navActive}>
-            Contact
-          </Link>
-        </li>
-      </div>
-      <div className={classes.burger} onClick={() => setNav(true)}>
-        <div></div>
-        <div></div>
-        <div></div>
-      </div>
-      {nav == true ? (
-        <div className={classes.navPopUp}>
-          <div className={classes.close} onClick={() => setNav("false")}>
-            <div className={classes.pin1}></div>
-            <div className={classes.pin2}></div>
-          </div>
-          <div className={classes.mobileNavigation}>
+        <div className={`${classes.navItemsWrapper}`}>
+          <div className={`${classes.navItems} ${classes.fsbc}`}>
             <li>
               <Link
-                to="/solutions"
-                activeClassName={classes.navActive}
-                onClick={() => setNav(false)}
-              >
-                Solutions
-              </Link>
-            </li>
-            <li>
-              <Link
-                to="about"
-                activeClassName={classes.navActive}
-                onClick={() => setNav(false)}
+                style={{
+                  fontFamily: `${isActive === 2 ? "Proxima700" : "Proxima400"}`,
+                }}
+                to="/about"
               >
                 About Us
               </Link>
             </li>
             <li>
               <Link
+                style={{
+                  fontFamily: `${isActive === 3 ? "Proxima700" : "Proxima400"}`,
+                }}
+                to="/impact"
+              >
+                Impact
+              </Link>
+            </li>
+            <li>
+              <Link
+                style={{
+                  fontFamily: `${isActive === 4 ? "Proxima700" : "Proxima400"}`,
+                }}
+                to="/products"
+              >
+                Products
+              </Link>
+            </li>
+            <li>
+              <Link
+                style={{
+                  fontFamily: `${isActive === 5 ? "Proxima700" : "Proxima400"}`,
+                }}
                 to="/contact"
-                activeClassName={classes.navActive}
-                onClick={() => setNav(false)}
               >
                 Contact
               </Link>
             </li>
           </div>
         </div>
-      ) : null}
+        <img className={classes.menuBtn} src={menuBtn} onClick={toggleMenu} />
+      </div>
+      {is500 && (
+        <div
+          className={classes.navItemsMobileWrapper}
+          style={{
+            top: showMenu ? "98px" : "0px",
+            opacity: showMenu ? 1 : 0,
+            visibility: showMenu ? "visible" : "hidden",
+          }}
+        >
+          <div className={classes.navItemsMobile}>
+            <li>
+              <Link
+                style={{
+                  fontFamily: `${isActive === 2 ? "Proxima700" : "Proxima400"}`,
+                }}
+                to="/about"
+              >
+                About Us
+              </Link>
+            </li>
+            <li>
+              <Link
+                style={{
+                  fontFamily: `${isActive === 3 ? "Proxima700" : "Proxima400"}`,
+                }}
+                to="/impact"
+              >
+                Impact
+              </Link>
+            </li>
+            <li>
+              <Link
+                style={{
+                  fontFamily: `${isActive === 4 ? "Proxima700" : "Proxima400"}`,
+                }}
+                to="/products"
+              >
+                Products
+              </Link>
+            </li>
+            <li>
+              <Link
+                style={{
+                  fontFamily: `${isActive === 5 ? "Proxima700" : "Proxima400"}`,
+                }}
+                to="/contact"
+              >
+                Contact
+              </Link>
+            </li>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
