@@ -98,15 +98,16 @@ const Header = () => {
   const [showMenu, setShowMenu] = useState(false);
   const is500 = useMediaQuery({ query: "(max-width: 500px)" });
   const isActiveCheck = () => {
+    location.pathname === "p" && setIsActive(4);
     switch (location.pathname) {
       case "/":
         setIsActive(1);
         break;
-      case "/about":
-        setIsActive(2);
-        break;
-      case "/impact":
-        setIsActive(3);
+        case "/about":
+          setIsActive(2);
+          break;
+          case "/impact":
+            setIsActive(3);
         break;
       case "/products":
         setIsActive(4);

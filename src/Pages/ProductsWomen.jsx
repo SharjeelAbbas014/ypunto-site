@@ -17,7 +17,6 @@ const useStyles = createUseStyles({
 
 const ProductsWomen = () => {
   const classes = useStyles();
-  console.log(WOMEN_INFO_DATA);
   return (
     <>
       <TypeHero imagePath="women" name="Women" />

@@ -2,7 +2,7 @@ import React from "react";
 import { createUseStyles } from "react-jss";
 import SideSelector from "../Components/Products/SideSelector";
 import TypeHero from "../Components/Products/TypeHero";
-import { WOMEN_INFO_DATA } from "../Components/Products/productsInfo.js";
+import { KIDS_INFO_DATA } from "../Components/Products/productsInfo.js";
 import ShowProducts from "../Components/Products/ShowProducts";
 
 const useStyles = createUseStyles({
@@ -17,13 +17,12 @@ const useStyles = createUseStyles({
 
 const ProductsKids = () => {
   const classes = useStyles();
-  console.log(WOMEN_INFO_DATA);
   return (
     <>
       <TypeHero imagePath="kids" name="Kids" />
       <div className={classes.content}>
         <SideSelector />
-        <ShowProducts info={WOMEN_INFO_DATA} folder="women" />
+        <ShowProducts info={KIDS_INFO_DATA} folder="kids" />
       </div>
     </>
   );
