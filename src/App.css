@@ -10,6 +10,27 @@
   src: url("./assets/fonts/ProximaNovaCondensedRegular.otf") format("truetype");
 }
 @font-face {
+  font-family: "Proxima600";
+  src: url("./assets/fonts/ProximaNovaCondensedSemiBold.otf");
+}
+@font-face {
   font-family: "Proxima700";
   src: url("./assets/fonts/ProximaNovaCondensedBold.otf");
+}
+@font-face {
+  font-family: "NewSpirit400";
+  src: url("./assets/fonts/NewSpiritRegular.otf");
+}
+@font-face {
+  font-family: "NewSpirit500";
+  src: url("./assets/fonts/NewSpiritMedium.otf");
+}
+@font-face {
+  font-family: "NewSpirit600";
+  src: url("./assets/fonts/NewSpiritSemibold.otf");
+}
+
+@font-face {
+  font-family: "P22";
+  src: url("./assets/fonts/P22.otf");
 }

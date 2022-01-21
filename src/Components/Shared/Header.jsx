@@ -41,7 +41,7 @@ const useStyles = createUseStyles({
     "& a": {
       textDecoration: "none",
       fontSize: 18,
-      lineHeight: 22,
+      lineHeight: "22px",
       color: "black",
     },
     "@media(max-width:570px)": {

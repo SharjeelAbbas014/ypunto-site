@@ -12,10 +12,18 @@ const useStyles = createUseStyles({
   title: {
     fontFamily: "NewSpirit400",
     textAlign: "center",
-    fontSize: 36,
+    fontSize: "4vh",
     lineHeight: "150%",
     color: "#C29B81",
     paddingTop: 54,
+    paddingRight: 8,
+    paddingLeft: 8,
+    "@media(min-width:1440px)": {
+      fontSize: 36,
+    },
+    "@media(max-width:850px)": {
+      fontSize: "2.5vh",
+    },
   },
   items: {
     display: "flex",
@@ -59,8 +67,8 @@ const ItemsSection = () => {
         KNITTING for the Earth with sustainable fibers
       </p>
       <div className={classes.items}>
-        {types.map((type) => (
-          <Item icon={type.icon} name={type.name} />
+        {types.map((type, idx) => (
+          <Item key={idx} icon={type.icon} name={type.name} />
         ))}
       </div>
     </div>

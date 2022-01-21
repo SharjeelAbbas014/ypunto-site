@@ -12,14 +12,20 @@ const useStyles = createUseStyles({
   },
   content: {
     position: "absolute",
-    bottom: 80,
-    left: 104,
-    fontSize: 36,
+    bottom: "13%",
+    left: "5.5%",
+    fontSize: "4vh",
     lineHeight: "150%",
     color: "#000",
-    fontFamily: "NewSpirit400",
+    fontFamily: "NewSpirit500",
     "& p:nth-child(1)": {
       color: "#54563D",
+    },
+    "@media(min-width:1440px)": {
+      fontSize: 36,
+    },
+    "@media(max-width:850px)": {
+      fontSize: "2vh",
     },
   },
 });
