@@ -33,7 +33,15 @@ const TypeHero = ({ imagePath, name }) => {
       <img
         src={require(`../../assets/images/products/header_${imagePath}.png`)}
       />
-      <p>{name}</p>
+      <p
+        style={
+          name === "Kids" || name === "Accessories"
+            ? { left: "7%" }
+            : { right: "7%" }
+        }
+      >
+        {name}
+      </p>
     </div>
   );
 };

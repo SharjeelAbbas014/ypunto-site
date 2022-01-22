@@ -5,6 +5,9 @@ import { Link, useLocation } from "react-router-dom";
 const useStyles = createUseStyles({
   sideSelector: {
     marginTop: 70,
+    "@media(max-width:900px)": {
+      display: "none",
+    },
   },
   line: {
     width: 189,

@@ -14,11 +14,13 @@ import ProductsTextiles from "./Pages/ProductsTextiles";
 import ProductsAccessories from "./Pages/ProductsAccessories";
 import Contact from "./Pages/Contact";
 import Footer from "./Components/Footer";
+import ScrollToTop from "./Helpers/ScrollToTop";
 
 function App() {
   return (
     <>
       <Header />
+      <ScrollToTop />
       <Container>
         <Switch>
           <Route path="/" exact>
