@@ -17,11 +17,19 @@ const useStyles = createUseStyles({
         fontSize: 64,
       },
       "@media(max-width:700px)": {
-        fontSize: "3vh",
+        fontSize: "36px",
       },
     },
     "& img": {
       width: "100%",
+    },
+    "@media(max-width:900px)": {
+      "& img": {
+        width: "100%",
+        height: 350,
+        objectFit: "cover",
+        objectPosition: "center",
+      },
     },
   },
 });

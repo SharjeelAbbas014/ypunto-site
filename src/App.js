@@ -15,6 +15,7 @@ import ProductsAccessories from "./Pages/ProductsAccessories";
 import Contact from "./Pages/Contact";
 import Footer from "./Components/Footer";
 import ScrollToTop from "./Helpers/ScrollToTop";
+import SupplyChain from "./Pages/SupplyChain";
 
 function App() {
   return (
@@ -31,6 +32,9 @@ function App() {
           </Route>
           <Route path="/impact">
             <Impact />
+          </Route>
+          <Route path="/supplychain">
+            <SupplyChain />
           </Route>
           <Route path="/products" exact>
             <Products />
