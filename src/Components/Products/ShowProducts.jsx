@@ -16,7 +16,7 @@ const ShowProducts = ({ info, folder }) => {
   return (
     <div className={classes.wrapper}>
       {info.map((item) => (
-        <ShowProduct info={item} folder={folder} />
+        <ShowProduct key={info.id} info={item} folder={folder} />
       ))}
     </div>
   );
