@@ -16,6 +16,11 @@ const useStyles = createUseStyles({
     padding: "59px 16px",
     margin: "0 auto",
     flexWrap: "wrap",
+    "@media(max-width:880px)": {
+      flexDirection: "column",
+      justifyContent: "center",
+      alignItems: "center",
+    },
   },
   title: {
     fontFamily: "NewSpirit400",
@@ -39,11 +44,27 @@ const useStyles = createUseStyles({
     fontSize: "24px",
     lineHeight: "30px",
     color: "#000",
+    "@media(max-width:880px)": {
+      "&:nth-child(2)": {
+        marginTop: 64,
+      },
+    },
+    "@media(max-width:445px)": {
+      "& img": {
+        width: "100%",
+      },
+      "& ul": {
+        paddingBottom: "24px",
+      },
+    },
   },
   cardTitle: {
     fontFamily: "NewSpirit400",
     paddingTop: "40px",
     paddingBottom: "49px",
+    "@media(max-width:445px)": {
+      padding: "16px",
+    },
   },
   btn: {
     background: "#54563D",

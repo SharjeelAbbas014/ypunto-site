@@ -195,7 +195,7 @@ const Hero = () => {
               <p>We are</p>
               <p>inspired knitting</p>
             </p>
-            <Link className={classes.btnSee} to="/about">
+            <Link className={classes.btnSee} to="/impact">
               See how we knit
             </Link>
           </div>

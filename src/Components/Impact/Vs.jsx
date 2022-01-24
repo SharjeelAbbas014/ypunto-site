@@ -17,6 +17,7 @@ const useStyles = createUseStyles({
     // width: "930px",
     display: "flex",
     justifyContent: "space-between",
+
     alignItems: "center",
     "& img": {
       padding: "0 38px",
@@ -30,6 +31,21 @@ const useStyles = createUseStyles({
       textAlign: "center",
       flexWrap: "wrap",
     },
+    "@media(max-width:1035px)": {
+      "& > p": {
+        fontSize: "36px",
+        lineHeight: "48px",
+
+        width: "unset",
+      },
+    },
+    "@media(max-width:875px)": {
+      flexDirection: "column",
+      "& > p": {
+        // height: "80px",
+        padding: "48px 16px 24px 16px",
+      },
+    },
   },
   vsImageDiv: {
     "& p": {
@@ -38,6 +54,12 @@ const useStyles = createUseStyles({
       lineHeight: "29px",
       textAlign: "center",
       paddingTop: 34,
+    },
+    "@media(max-width:400px)": {
+      "& img": {
+        width: 268,
+        padding: "0 8px",
+      },
     },
   },
   descp: {
@@ -58,12 +80,20 @@ const useStyles = createUseStyles({
     padding: "61px 16px 0 16px",
     maxWidth: 670,
     margin: "0 auto",
+    // flexWrap: "wrap",
+    "@media(max-width:560px)": {
+      flexDirection: "column",
+      paddingTop: 0,
+    },
   },
   numbers: {
     fontFamily: "NewSpirit500",
     fontSize: "64px",
     lineHeight: "80px",
     color: "#54563D",
+    "@media(max-width:560px)": {
+      paddingTop: "24px",
+    },
   },
   numbersLabel: {
     fontFamily: "Proxima400",
