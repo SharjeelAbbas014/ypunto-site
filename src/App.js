@@ -16,6 +16,7 @@ import Contact from "./Pages/Contact";
 import Footer from "./Components/Footer";
 import ScrollToTop from "./Helpers/ScrollToTop";
 import SupplyChain from "./Pages/SupplyChain";
+import Thankyou from "./Pages/Thankyou";
 
 function App() {
   return (
@@ -62,6 +63,9 @@ function App() {
           </Route>
           <Route path="/contact">
             <Contact />
+          </Route>
+          <Route path="/thankyou">
+            <Thankyou />
           </Route>
           <Route path="/*" />
         </Switch>
