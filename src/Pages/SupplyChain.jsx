@@ -16,9 +16,24 @@ import henan from "../assets/images/supplychain/henan.png";
 const useStyles = createUseStyles({
   wrapper: {
     backgroundImage: `url(${bkg})`,
+    backgroundSize: "cover",
     backgroundPosition: "top left",
     backgroundRepeat: "no-repeat",
     // paddingBottom: 55,
+  },
+  showText: {
+    display: "block",
+    color: "#fff",
+    fontSize: "24px",
+    fontWeight: "100",
+    marginTop: "10px",
+    // position: "absolute",
+    bottom: "0",
+  },
+  images: {
+    position: "absolute",
+    top: "200px",
+    left: "104px",
   },
   tagline: {
     paddingTop: 372,
@@ -179,10 +194,10 @@ const useStyles = createUseStyles({
   },
   imageProperty: {
     display: "block",
-    position: "absolute",
+    // position: "absolute",
     zIndex: "100",
-    top: "-270px",
-    left: "-350px",
+    top: "0",
+    left: "0",
   },
   locationStar: {
     cursor: "pointer",
@@ -194,6 +209,15 @@ const useStyles = createUseStyles({
   mainDots: {
     marginRight: "20px",
   },
+  infoDescM: {
+    display: "none",
+    fontFamily: "Proxima400",
+    fontSize: 18,
+    lineHeight: "22px",
+    paddingLeft: 104,
+    color: "#fff",
+  },
+
   "@media screen and (max-width: 1380px)": {
     locationDivShanghai: {
       right: "12%",
@@ -228,6 +252,11 @@ const useStyles = createUseStyles({
     locationDivAddis: {
       right: "48%",
       top: "86%",
+    },
+  },
+  "@media screen and (max-width: 1380px)": {
+    imageProperty: {
+      width: "350px",
     },
   },
   "@media screen and (max-width: 1300px)": {
@@ -265,6 +294,22 @@ const useStyles = createUseStyles({
       right: "48%",
       top: "86%",
     },
+    imageProperty: {
+      width: "300px",
+    },
+  },
+  "@media screen and (max-width: 1240px)": {
+    // images: {
+    //   position: "absolute",
+    //   top: "0px",
+    //   left: "50%",
+    //   transform: "translate(-50%,0%)",
+    // },
+    // mapDiv: {
+    //   "& > img": {
+    //     marginTop: "200px",
+    //   },
+    // },
   },
   "@media screen and (max-width: 1200px)": {
     locationDivShanghai: {
@@ -465,9 +510,21 @@ const useStyles = createUseStyles({
       right: "18%",
       top: "80%",
     },
+
+    images: {
+      left: "40px",
+      top: "150px",
+    },
   },
 
   "@media screen and (max-width: 775px)": {
+    infoDescM: {
+      display: "block",
+    },
+
+    infoDesc: {
+      display: "none",
+    },
     locationDivShanghai: {
       right: "11%",
       top: "55%",
@@ -524,11 +581,15 @@ const useStyles = createUseStyles({
     },
   },
   "@media screen and (max-width: 650px)": {
+    imageProperty: {
+      width: "200px",
+    },
     locationDivAddis: {
       right: "5%",
       top: "80%",
       transform: "scale(0.75)",
     },
+
     locationDivDhaka: {
       right: "18%",
       top: "80%",
@@ -559,18 +620,21 @@ const useStyles = createUseStyles({
       right: "38%",
       top: "46%",
     },
-    imageProperty: {
-      width: "300px",
-      marginTop: "60px",
-      marginLeft: "60px",
-    },
   },
   "@media screen and (max-width: 560px)": {
+    infoDescM: {
+      paddingLeft: "0",
+      paddingBottom: "200px",
+
+      fontSize: "14px",
+      textAlign: "center",
+    },
     mapDiv: {
       fontSize: "14px",
     },
     tagline: {
       fontSize: "28px",
+      paddingTop: "180px",
     },
     locationDivShanghai: {
       right: "14%",
@@ -598,18 +662,36 @@ const useStyles = createUseStyles({
     },
     info: {
       paddingLeft: "0",
+      paddingTop: 30,
       textAlign: "center",
       fontSize: "18px",
+    },
+    images: {
+      top: "-40%",
+      left: "50%",
+      transform: "translate(-50%,0)",
+    },
+    showText: {
+      fontSize: 14,
+      marginTop: 10,
+      "& > p": {
+        margin: "0",
+        padding: "0",
+        lineHeight: 1.1,
+      },
     },
     infoDesc: {
       paddingLeft: "0",
       fontSize: "14px",
 
       textAlign: "center",
-      paddingBottom: "10px",
+      paddingBottom: "200px",
     },
   },
   "@media screen and (max-width: 490px)": {
+    images: {
+      top: "-50%",
+    },
     locationDivShanghai: {
       right: "14%",
       top: "52%",
@@ -618,11 +700,7 @@ const useStyles = createUseStyles({
       right: "14.5%",
       top: "57%",
     },
-    imageProperty: {
-      width: "200px",
-      marginTop: "150px",
-      marginLeft: "150px",
-    },
+
     locationDivJiangsu: {
       right: "17%",
       top: "43%",
@@ -719,25 +797,186 @@ const SupplyChain = () => {
       </p>
       <p className={classes.info}>Interactive Map</p>
       <p className={classes.infoDesc}>Hover over each city</p>
+      <p className={classes.infoDescM}>Tap over each city</p>
+
       <div className={classes.mapDiv}>
+        <div className={classes.images}>
+          <div className={classes.oneImage}>
+            <motion.img
+              animate={shanghaiHover ? "open" : "closed"}
+              variants={variants}
+              src={shanghai}
+              alt=""
+              transition={{ duration: 0.2 }}
+              animate={shanghaiHover ? { scale: 1 } : { scale: 0 }}
+              onMouseEnter={() => setShanghaiHover(true)}
+              onMouseLeave={() => setShanghaiHover(false)}
+              className={`${
+                shanghaiHover ? classes.imageProperty : classes.displayNone
+              } `}
+            />
+            <div
+              className={shanghaiHover ? classes.showText : classes.displayNone}
+            >
+              <p>Description</p>
+              <p>Shanghai, China</p>
+            </div>
+          </div>
+          <div className={classes.oneImage}>
+            <motion.img
+              animate={zhejiangHover ? "open" : "closed"}
+              variants={variants}
+              src={zhejiang}
+              alt=""
+              transition={{ duration: 0.2 }}
+              animate={zhejiangHover ? { scale: 1 } : { scale: 0 }}
+              onMouseEnter={() => setZhejiangHover(true)}
+              onMouseLeave={() => setZhejiangHover(false)}
+              className={`${
+                zhejiangHover ? classes.imageProperty : classes.displayNone
+              } `}
+            />
+            <div
+              className={zhejiangHover ? classes.showText : classes.displayNone}
+            >
+              <p>Description</p>
+              <p>Zhejiang, China</p>
+            </div>
+          </div>
+          <div className={classes.oneImage}>
+            <motion.img
+              animate={jiangsuHover ? "open" : "closed"}
+              variants={variants}
+              src={jiangsu}
+              alt=""
+              transition={{ duration: 0.2 }}
+              animate={jiangsuHover ? { scale: 1 } : { scale: 0 }}
+              onMouseEnter={() => setJiangsuHover(true)}
+              onMouseLeave={() => setJiangsuHover(false)}
+              className={`${
+                jiangsuHover ? classes.imageProperty : classes.displayNone
+              } `}
+            />
+            <div
+              className={jiangsuHover ? classes.showText : classes.displayNone}
+            >
+              <p>Description</p>
+              <p>Jiangsu, China</p>
+            </div>
+          </div>
+          <div className={classes.oneImage}>
+            <motion.img
+              animate={anhuiHover ? "open" : "closed"}
+              variants={variants}
+              src={anhui}
+              alt=""
+              transition={{ duration: 0.2 }}
+              animate={anhuiHover ? { scale: 1 } : { scale: 0 }}
+              onMouseEnter={() => setAnhuiHover(true)}
+              onMouseLeave={() => setAnhuiHover(false)}
+              className={`${
+                anhuiHover ? classes.imageProperty : classes.displayNone
+              } `}
+            />
+            <div
+              className={anhuiHover ? classes.showText : classes.displayNone}
+            >
+              <p>Description</p>
+              <p>Anhui, China</p>
+            </div>
+          </div>
+          <div className={classes.oneImage}>
+            <motion.img
+              animate={shandongHover ? "open" : "closed"}
+              variants={variants}
+              src={shandong}
+              alt=""
+              transition={{ duration: 0.2 }}
+              animate={shandongHover ? { scale: 1 } : { scale: 0 }}
+              onMouseEnter={() => setShangdongHover(true)}
+              onMouseLeave={() => setShangdongHover(false)}
+              className={`${
+                shandongHover ? classes.imageProperty : classes.displayNone
+              } `}
+            />
+            <div
+              className={shandongHover ? classes.showText : classes.displayNone}
+            >
+              <p>Description</p>
+              <p>Shandong, China</p>
+            </div>
+          </div>
+          <div className={classes.oneImage}>
+            <motion.img
+              animate={henanHover ? "open" : "closed"}
+              variants={variants}
+              src={henan}
+              alt=""
+              transition={{ duration: 0.2 }}
+              animate={henanHover ? { scale: 1 } : { scale: 0 }}
+              onMouseEnter={() => setHenanHover(true)}
+              onMouseLeave={() => setHenanHover(false)}
+              className={`${
+                henanHover ? classes.imageProperty : classes.displayNone
+              } `}
+            />
+            <div
+              className={henanHover ? classes.showText : classes.displayNone}
+            >
+              <p>Description</p>
+              <p>Henan, China</p>
+            </div>
+          </div>
+          <div className={classes.oneImage}>
+            <motion.img
+              animate={bangladeshHover ? "open" : "closed"}
+              variants={variants}
+              src={bangladesh}
+              alt=""
+              transition={{ duration: 0.2 }}
+              animate={bangladeshHover ? { scale: 1 } : { scale: 0 }}
+              onMouseEnter={() => setBangladeshHover(true)}
+              onMouseLeave={() => setBangladeshHover(false)}
+              className={`${
+                bangladeshHover ? classes.imageProperty : classes.displayNone
+              } `}
+            />
+            <div
+              className={
+                bangladeshHover ? classes.showText : classes.displayNone
+              }
+            >
+              <p>Description</p>
+              <p>Bangladesh, China</p>
+            </div>
+          </div>
+          <div className={classes.oneImage}>
+            <motion.img
+              animate={ethopiaHover ? "open" : "closed"}
+              variants={variants}
+              src={ethopia}
+              alt=""
+              transition={{ duration: 0.2 }}
+              animate={ethopiaHover ? { scale: 1 } : { scale: 0 }}
+              onMouseEnter={() => setEthopiaHover(true)}
+              onMouseLeave={() => setEthopiaHover(false)}
+              className={`${
+                ethopiaHover ? classes.imageProperty : classes.displayNone
+              } `}
+            />
+            <div
+              className={ethopiaHover ? classes.showText : classes.displayNone}
+            >
+              <p>Description</p>
+              <p>Ethopia, China</p>
+            </div>
+          </div>
+        </div>
         <img src={map} alt="YPunto Locations" />
 
         <div className={classes.mainDots}>
           <div className={classes.moveDots}>
             <div className={`${classes.locationDivShanghai}`}>
-              <motion.img
-                animate={shanghaiHover ? "open" : "closed"}
-                variants={variants}
-                src={shanghai}
-                alt=""
-                transition={{ duration: 0.5 }}
-                animate={shanghaiHover ? { scale: 1 } : { scale: 0 }}
-                onMouseEnter={() => setShanghaiHover(true)}
-                onMouseLeave={() => setShanghaiHover(false)}
-                className={`${
-                  shanghaiHover ? classes.imageProperty : classes.displayNone
-                } `}
-              />
               <div className={classes.flexElement}>
                 <div
                   className={`${classes.locationDot} ${classes.locationDotShanghai} `}
@@ -755,19 +994,6 @@ const SupplyChain = () => {
               </div>
             </div>
             <div className={`${classes.locationDivZhejiang}`}>
-              <motion.img
-                animate={zhejiangHover ? "open" : "closed"}
-                variants={variants}
-                src={zhejiang}
-                alt=""
-                transition={{ duration: 0.5 }}
-                animate={zhejiangHover ? { scale: 1 } : { scale: 0 }}
-                onMouseEnter={() => setZhejiangHover(true)}
-                onMouseLeave={() => setZhejiangHover(false)}
-                className={`${
-                  zhejiangHover ? classes.imageProperty : classes.displayNone
-                } `}
-              />
               <div className={classes.flexElement}>
                 <div
                   className={`${classes.locationDot} ${classes.locationDotZhejiang} `}
@@ -785,19 +1011,6 @@ const SupplyChain = () => {
               </div>
             </div>
             <div className={`${classes.locationDivJiangsu}`}>
-              <motion.img
-                animate={jiangsuHover ? "open" : "closed"}
-                variants={variants}
-                src={jiangsu}
-                alt=""
-                transition={{ duration: 0.5 }}
-                animate={jiangsuHover ? { scale: 1 } : { scale: 0 }}
-                onMouseEnter={() => setJiangsuHover(true)}
-                onMouseLeave={() => setJiangsuHover(false)}
-                className={`${
-                  jiangsuHover ? classes.imageProperty : classes.displayNone
-                } `}
-              />
               <div className={classes.flexElement}>
                 <div
                   className={`${classes.locationDot} ${classes.locationDotJiangsu} `}
@@ -815,19 +1028,6 @@ const SupplyChain = () => {
               </div>
             </div>
             <div className={`${classes.locationDivAnhui}`}>
-              <motion.img
-                animate={anhuiHover ? "open" : "closed"}
-                variants={variants}
-                src={anhui}
-                alt=""
-                transition={{ duration: 0.5 }}
-                animate={anhuiHover ? { scale: 1 } : { scale: 0 }}
-                onMouseEnter={() => setAnhuiHover(true)}
-                onMouseLeave={() => setAnhuiHover(false)}
-                className={`${
-                  anhuiHover ? classes.imageProperty : classes.displayNone
-                } `}
-              />
               <div
                 className={`${classes.locationDot} ${classes.locationDotAnhui} `}
                 onMouseEnter={() => setAnhuiHover(true)}
@@ -843,19 +1043,6 @@ const SupplyChain = () => {
               </p>
             </div>
             <div className={`${classes.locationDivShandong} `}>
-              <motion.img
-                animate={shandongHover ? "open" : "closed"}
-                variants={variants}
-                src={shandong}
-                alt=""
-                transition={{ duration: 0.5 }}
-                animate={shandongHover ? { scale: 1 } : { scale: 0 }}
-                onMouseEnter={() => setShangdongHover(true)}
-                onMouseLeave={() => setShangdongHover(false)}
-                className={`${
-                  shandongHover ? classes.imageProperty : classes.displayNone
-                } `}
-              />
               <div
                 className={`${classes.locationDot} ${classes.locationDotShandong} `}
                 onMouseEnter={() => setShangdongHover(true)}
@@ -871,19 +1058,6 @@ const SupplyChain = () => {
               </p>
             </div>
             <div className={`${classes.locationDivHenan}`}>
-              <motion.img
-                animate={henanHover ? "open" : "closed"}
-                variants={variants}
-                src={henan}
-                alt=""
-                transition={{ duration: 0.5 }}
-                animate={henanHover ? { scale: 1 } : { scale: 0 }}
-                onMouseEnter={() => setHenanHover(true)}
-                onMouseLeave={() => setHenanHover(false)}
-                className={`${
-                  henanHover ? classes.imageProperty : classes.displayNone
-                } `}
-              />
               <div
                 className={`${classes.locationDot} ${classes.locationDotHenan} `}
                 onMouseEnter={() => setHenanHover(true)}
@@ -901,20 +1075,6 @@ const SupplyChain = () => {
           </div>
         </div>
         <div className={`${classes.locationDivDhaka}`}>
-          <motion.img
-            animate={bangladeshHover ? "open" : "closed"}
-            variants={variants}
-            src={bangladesh}
-            alt=""
-            transition={{ duration: 0.5 }}
-            animate={bangladeshHover ? { scale: 1 } : { scale: 0 }}
-            onMouseEnter={() => setBangladeshHover(true)}
-            onMouseLeave={() => setBangladeshHover(false)}
-            className={`${
-              bangladeshHover ? classes.imageProperty : classes.displayNone
-            } `}
-          />
-
           <img
             src={locationStar}
             className={`${classes.locationStar}`}
@@ -939,20 +1099,6 @@ const SupplyChain = () => {
           </p>
         </div>
         <div className={`${classes.locationDivAddis}`}>
-          <motion.img
-            animate={ethopiaHover ? "open" : "closed"}
-            variants={variants}
-            src={ethopia}
-            alt=""
-            transition={{ duration: 0.5 }}
-            animate={ethopiaHover ? { scale: 1 } : { scale: 0 }}
-            onMouseEnter={() => setEthopiaHover(true)}
-            onMouseLeave={() => setEthopiaHover(false)}
-            className={`${
-              ethopiaHover ? classes.imageProperty : classes.displayNone
-            } `}
-          />
-
           <img
             src={locationStar}
             className={`${classes.locationStar}`}
